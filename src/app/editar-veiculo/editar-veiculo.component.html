@@ -1,0 +1,41 @@
+
+<div class="col-md-6">
+    <h2 class="text-center">Change User Contact</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  
+        <div class="form-group">
+            <label for="marca">Marca:</label>
+            <input formControlName="marca" placeholder="Marca" name="marca" class="form-control" id="marca">
+            <div class="feedback-red" *ngIf="isInvalid('marca')">
+              Marca e um campo obrigatorio.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="modelo">Modelo:</label>
+            <input formControlName="modelo" placeholder="Modelo" name="modelo" class="form-control" id="modelo">
+            <div class="feedback-red" *ngIf="isInvalid('marca')">
+              Modelo e um campo obrigatorio.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="ano">Ano:</label>
+            <input formControlName="ano" placeholder="Ano" name="ano" class="form-control" id="ano">
+            <div class="feedback-red" *ngIf="isInvalid('ano')">
+              Ano e um campo obrigatorio.
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="quantidade">Quantidade:</label>
+            <input formControlName="quantidade" placeholder="Quantidade" name="quantidade" class="form-control" id="quantidade">
+            <div class="feedback-red" *ngIf="isInvalid('ano')">
+              Quantidade e um campo obrigatorio.
+            </div>
+          </div>  
+      <button button [disabled]="addForm.invalid" class="btn btn-success">Submit</button>
+      <button class="btn btn-danger ml-2 " (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+  
