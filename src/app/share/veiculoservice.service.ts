@@ -1,41 +1,46 @@
+import { Veiculo } from './../veiculo.model';
+import { HeaderComponent } from './../header/header.component';
 import { Injectable } from '@angular/core';
-import { Veiculo } from '../veiculo.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, pluck, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+
+const headers= new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*');
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class VeiculoService {
+  [x: string]: any;
+  constructor(private http: HttpClient) { headers }
 
-  veiculoModelo: Veiculo[] = [{
-    id: 0,
-    marca: 'BlaBla',
-    modelo: 'BlaBla',
-    ano: 2010,
-    quantidade: 1
-  }];
+  veiculoModelo: Veiculo[] = [];
+  veiculo!: Veiculo;
 
-  create(veiculoModelo: Veiculo) {
-    const itemIndex = this.veiculoModelo.length;
-    veiculoModelo.id = this.getnextId();
-    console.log(veiculoModelo);
-    this.veiculoModelo[itemIndex] = veiculoModelo;
+  create(veiculoModelo: Veiculo): Promise<Veiculo> {
+    console.log('iniciei o create')
+    let promise = new Promise<Veiculo>((resolve, reject) => {
+      setTimeout(()=> {
+        veiculoModelo.id = Math.random();
+        this.http.post<Veiculo>('http://localhost:3000/veiculo', veiculoModelo).subscribe(data => {})
+      },5000);
+    });
+    return promise;
   }
 
   delete(veiculoModelo: Veiculo) {
-    this.veiculoModelo.splice(this.veiculoModelo.indexOf(veiculoModelo), 1);
+    this.http.delete<Veiculo>('http://localhost:3000/veiculo/'+veiculoModelo.id).subscribe(data => {})
+
   }
 
   update(veiculoModelo: Veiculo) {
-    const itemIndex = this.veiculoModelo.findIndex(item => item.id === veiculoModelo.id);
-    console.log(itemIndex);
-    this.veiculoModelo[itemIndex] = veiculoModelo;
+    this.http.put<Veiculo>('http://localhost:3000/veiculo/'+veiculoModelo.id, veiculoModelo).subscribe(data => {})
   }
 
-  getall(): Veiculo[] {
-    console.log('veiculoModelo:getall');
-    console.log(this.veiculoModelo);
-    return this.veiculoModelo;
-  }
 
   reorderVeiculos(veiculoModelo: Veiculo) {
     this.veiculoModelo = this.veiculoModelo
@@ -43,23 +48,11 @@ export class VeiculoService {
       .sort((a, vc) => vc.id - vc.id);
   }
 
-  getVeiculoById(id: number) {
+  getVeiculoById(id: number): Observable<Veiculo> {
     console.log(id);
-    const itemIndex = this.veiculoModelo.findIndex(item => item.id === id);
-    console.log(itemIndex);
-    return this.veiculoModelo[itemIndex];
+    return this.http.get<Veiculo>('http://localhost:3000/veiculo/'+id).pipe(
+      tap(_ => this['log'](`fetched hero id=${id}`))
+    );
   }
 
-  getnextId(): number {
-    let highest = 0;
-    this.veiculoModelo.forEach(function (item) {
-      if (highest === 0) {
-        highest = item.id;
-      }
-      if (highest < item.id) {
-        highest = item.id;
-      }
-    });
-    return highest + 1;
-  }
 }

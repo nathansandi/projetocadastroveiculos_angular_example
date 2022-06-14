@@ -1,0 +1,18 @@
+{
+  "veiculo": [
+    {
+      "id": 0,
+      "marca": "BlaBla",
+      "modelo": "laBla",
+      "ano": 2010,
+      "quantidade": 1
+    },
+    {
+      "id": 0.09597443660840366,
+      "marca": "dfgg",
+      "modelo": "dgdfg",
+      "ano": 5555,
+      "quantidade": 4
+    }
+  ]
+}

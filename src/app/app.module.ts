@@ -9,6 +9,7 @@ import { NovoVeiculoComponent } from './novo-veiculo/novo-veiculo.component';
 import { EditarVeiculoComponent } from './editar-veiculo/editar-veiculo.component';
 import { VeiculoComponent } from './veiculos/veiculos.component';
 import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,12 +19,13 @@ import { HeaderComponent } from './header/header.component';
     NovoVeiculoComponent,
     EditarVeiculoComponent,
     VeiculoComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
