@@ -46,8 +46,7 @@ export class VeiculoComponent implements OnInit {
 
   ngOnInit() {
     console.log('veiculoModelo:init');
-    this.http.get<Veiculo[]>('http://localhost:3000/veiculo',  {headers:
-    {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } } ).subscribe(
+    this.http.get<Veiculo[]>('http://localhost:3000/veiculo').subscribe(
       (veiculos: Veiculo[]) => {
         console.log('veiculos', veiculos)
         this.veiculos = veiculos

@@ -1,4 +1,4 @@
-<div style="font-size:15px">  
+<div style="font-size:15px">
     <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -16,7 +16,7 @@
         <td>{{ veiculo.id }}</td>
         <td>{{ veiculo.marca }}</td>
         <td>{{ veiculo.modelo }}</td>
-        <td>{{ veiculo.ano }}</td>
+        <td *ngIf="veiculo.ano > 2000">{{ veiculo.ano }}</td>
         <td>{{ veiculo.quantidade }}</td>
         <td>
           <button class=" btn btn-primary " (click)="editVeiculo(veiculo) ">Edit</button>
