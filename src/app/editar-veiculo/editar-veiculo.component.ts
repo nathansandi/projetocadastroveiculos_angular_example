@@ -1,11 +1,12 @@
+import { Veiculo } from './../veiculo.model';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Veiculo } from '../veiculo.model';
 import { VeiculoService } from '../share/veiculoservice.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, pluck } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,9 @@ import { catchError, map, pluck } from 'rxjs/operators';
 })
 export class EditarVeiculoComponent implements OnInit {
 
+
   constructor(private formBuilder: FormBuilder, private router: Router, private veiculoService: VeiculoService, private http: HttpClient) { }
+
   addForm = this.formBuilder.group({
     id: [],
     marca: ['', Validators.required],
@@ -24,17 +27,12 @@ export class EditarVeiculoComponent implements OnInit {
     quantidade: [''],
   });
 
-  veiculoModelo!: Veiculo;
+  //veiculoModelo!: Veiculo;
+
+
 
   ngOnInit() {
     const id = localStorage.getItem('editVeiculoId');
-
-    this.http.get<Veiculo>('http://localhost:3000/veiculo/'+id).subscribe(
-      (veiculo: Veiculo) => {
-        console.log('veiculos', veiculo)
-        this.veiculoModelo = veiculo
-      }
-    )
 
     if (!id) {
       alert('Invalid action.');
@@ -48,8 +46,10 @@ export class EditarVeiculoComponent implements OnInit {
             ano: ['', Validators.required],
             quantidade: [''],
           });
-    const data = this.veiculoService.getVeiculoById(+id).forEach;
-    this.addForm.setValue(data);
+
+
+
+    this.getVeiculo(id).subscribe(res => this.addForm.setValue(res));
   }
 
   isInvalid(data: string) {
@@ -63,5 +63,10 @@ export class EditarVeiculoComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['']);
+  }
+
+  getVeiculo(id: String): Observable<Veiculo> {
+    return this.http.get<Veiculo>('http://localhost:3000/veiculo/'+id)
+      .pipe();
   }
 }
