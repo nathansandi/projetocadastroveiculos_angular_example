@@ -6,18 +6,19 @@ function requireHTTPS(req, res, next) {
   next();
 }
 
-const express = require('express');
-const app = express();
 
+
+const express = require('express');
 const jsonServer = require('json-server')
+
+const app = express();
 const server = jsonServer.create()
 const router = jsonServer.router('api/db.json')
 
 const middlewares = jsonServer.defaults()
 
-server.use(middlewares)
-server.use(router)
-
+app.use(middlewares)
+app.use(router)
 app.use(requireHTTPS);
 app.use(express.static('./dist/projetocadastroveiculos'));
 
@@ -25,7 +26,7 @@ app.use(express.static('./dist/projetocadastroveiculos'));
 
 const port = 3000
 
-server.listen(3000, () => {
+app.listen(3000, () => {
     console.log(`JSON Server is running on port ${port}`)
 })
 
