@@ -21,7 +21,7 @@ export class VeiculoComponent implements OnInit {
   editVeiculo(veiculo: Veiculo) {
     console.log(veiculo);
     localStorage.removeItem('editVeiculoId');
-    this.http.get<Veiculo[]>('https://cadastroveiculos.herokuapp.com:3000/veiculo/'+veiculo.id,  {headers:
+    this.http.get<Veiculo[]>('https://cad-veiculo-utfpr.herokuapp.com/veiculo/'+veiculo.id,  {headers:
     {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } } ).subscribe(
       (veiculos: Veiculo[]) => {
         console.log('veiculos', veiculos)
@@ -35,7 +35,7 @@ export class VeiculoComponent implements OnInit {
   deleteVeiculo(veiculo: Veiculo) {
     console.log(veiculo);
     this.vcs.delete(veiculo);
-    this.http.get<Veiculo[]>('https://cadastroveiculos.herokuapp.com:3000/veiculo',  {headers:
+    this.http.get<Veiculo[]>('https://cad-veiculo-utfpr.herokuapp.com/veiculo',  {headers:
     {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } } ).subscribe(
       (veiculos: Veiculo[]) => {
         console.log('veiculos', veiculos)
@@ -46,7 +46,7 @@ export class VeiculoComponent implements OnInit {
 
   ngOnInit() {
     console.log('veiculoModelo:init');
-    this.http.get<Veiculo[]>('https://cadastroveiculos.herokuapp.com:3000/veiculo').subscribe(
+    this.http.get<Veiculo[]>('https://cad-veiculo-utfpr.herokuapp.com/veiculo').subscribe(
       (veiculos: Veiculo[]) => {
         console.log('veiculos', veiculos)
         this.veiculos = veiculos
