@@ -1,5 +1,6 @@
 {
   "name": "projetocadastroveiculos",
+  "homepage": "http://nathansandi.github.io/projetocadastroveiculos",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +8,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "api": "json-server api/db.json --routes api/routes.json --no-cors=false"
+    "api": "json-server api/db.json --routes api/routes.json --no-cors=false",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "private": true,
   "dependencies": {
