@@ -66,7 +66,7 @@ export class EditarVeiculoComponent implements OnInit {
   }
 
   getVeiculo(id: String): Observable<Veiculo> {
-    return this.http.get<Veiculo>('http://localhost:3000/veiculo/'+id)
+    return this.http.get<Veiculo>('https://cadastroveiculos.herokuapp.com/veiculo/'+id)
       .pipe();
   }
 }
