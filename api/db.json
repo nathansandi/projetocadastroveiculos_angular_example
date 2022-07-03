@@ -1,0 +1,18 @@
+{
+  "veiculo": [
+    {
+      "id": 0.12341889105141357,
+      "marca": "Teste decente",
+      "modelo": "Teste decente",
+      "ano": 2020,
+      "quantidade": 44
+    },
+    {
+      "id": 0.28141669562855043,
+      "marca": "rest",
+      "modelo": "rest",
+      "ano": 2015,
+      "quantidade": 33
+    }
+  ]
+}
