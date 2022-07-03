@@ -10,7 +10,8 @@
     "test": "ng test",
     "api": "json-server api/db.json --routes api/routes.json --no-cors=false",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "server": "npx json-server --watch public/db.json --port=3001"
   },
   "private": true,
   "dependencies": {
