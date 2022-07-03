@@ -26,19 +26,19 @@ export class VeiculoService {
     let promise = new Promise<Veiculo>((resolve, reject) => {
       setTimeout(()=> {
         veiculoModelo.id = Math.random();
-        this.http.post<Veiculo>('http://localhost:3000/veiculo', veiculoModelo).subscribe(data => {})
+        this.http.post<Veiculo>('http://cadastroveiculos.herokuapp.com:3000/veiculo', veiculoModelo).subscribe(data => {})
       },5000);
     });
     return promise;
   }
 
   delete(veiculoModelo: Veiculo) {
-    this.http.delete<Veiculo>('http://localhost:3000/veiculo/'+veiculoModelo.id).subscribe(data => {})
+    this.http.delete<Veiculo>('http://cadastroveiculos.herokuapp.com:3000/veiculo/'+veiculoModelo.id).subscribe(data => {})
 
   }
 
   update(veiculoModelo: Veiculo) {
-    this.http.put<Veiculo>('http://localhost:3000/veiculo/'+veiculoModelo.id, veiculoModelo).subscribe(data => {})
+    this.http.put<Veiculo>('http://cadastroveiculos.herokuapp.com:3000/veiculo/'+veiculoModelo.id, veiculoModelo).subscribe(data => {})
   }
 
 
@@ -50,7 +50,7 @@ export class VeiculoService {
 
   getVeiculoById(id: number): Observable<Veiculo> {
     console.log(id);
-    return this.http.get<Veiculo>('http://localhost:3000/veiculo/'+id).pipe(
+    return this.http.get<Veiculo>('http://cadastroveiculos.herokuapp.com:3000/veiculo/'+id).pipe(
       tap(_ => this['log'](`fetched hero id=${id}`))
     );
   }
