@@ -1,0 +1,30 @@
+
+<div class="col-md-4 col-md-offset-4">
+    <h2 class="text-center">Change User Contact</h2>
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  
+      <div class="form-group">
+        <label for="marca">Marca:</label> 
+        <input formControlName="marca" placeholder="Marca" name="marca" class="form-control" id="marca" type="text" required="true">
+      </div>
+
+      <div class="form-group">
+        <label for="modelo">Modelo:</label>
+        <input formControlName="modelo" placeholder="Modelo" name="modelo" class="form-control" id="modelo" type="text" required="true">
+      </div>
+
+      <div class="form-group">
+        <label for="ano">Ano:</label>
+        <input formControlName="ano" placeholder="Ano" name="ano" class="form-control" id="ano" type="number" required="true" ngModel pattern="[0-9]{4}">
+      </div>
+
+      <div class="form-group">
+        <label for="quantidade">Quantidade:</label>
+        <input formControlName="quantidade" placeholder="Quantidade" name="quantidade" class="form-control" id="quantidade" type="number">
+      </div>
+      <br>
+      <button button [disabled]="addForm.invalid" class="btn btn-success">Submit</button>
+      <button class="btn btn-danger ml-2 " (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+  
